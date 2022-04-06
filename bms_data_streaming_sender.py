@@ -28,5 +28,5 @@ def send_data_to_console():
         time.sleep(1) # Sleep for 1 seconds
 
 
-if __name__ == "__main__":
-    send_data_to_console()
+#if __name__ == "__main__":
+#    send_data_to_console()

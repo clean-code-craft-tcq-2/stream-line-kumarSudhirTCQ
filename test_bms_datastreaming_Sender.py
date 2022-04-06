@@ -45,11 +45,12 @@ class Test_bms_data_streaming_sender:
         mock_obj_print.assert_called_with('Amps: 5, Temp: 80')
 
 
-if __name__ == "__main__":
-    obj = Test_bms_data_streaming_sender()
-    obj.test_SimulateSensor()
-    obj.test_Calibrate_Sensor_Data()
-    obj.test_Get_CurrentInAmps()
-    obj.test_get_temperature()
-    obj.test_send_data_to_console()
+# run the test case
+#if __name__ == "__main__":
+obj = Test_bms_data_streaming_sender()
+obj.test_SimulateSensor()
+obj.test_Calibrate_Sensor_Data()
+obj.test_Get_CurrentInAmps()
+obj.test_get_temperature()
+obj.test_send_data_to_console()
 
