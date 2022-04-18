@@ -10,7 +10,7 @@
 #include <functional>
 #endif
 
-#include <python2.7/Python.h>
+#include <python3.9/Python.h>
 
 namespace matplotlibcpp {
 
