@@ -12,10 +12,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-#       - name: Install mathpltlib
-#         run: |
-#           sudo apt-get update
-#           sudo apt-get install python3-matplotlib
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -23,24 +20,30 @@ jobs:
           pip install coverage
           pip install -U matplotlib
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings.
           flake8 . --count --exit-zero --max-line-length=80 --ignore=E111,E121,E126 --statistics
+
       - name: run Sender
         run: |
            python bms_data_streaming_sender.py
+
       - name: build receiver
-        run: g++ -Wall -Wextra -fprofile-arcs TestReceiver.cpp -o receiver
-      - name: run receiver
-        run: ./receiver
+        run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker *.c*
+
+      - name: run
+        run: ./testchecker
+
       - name: Run and collect coverage
         run: |
           coverage run --branch test_bms_datastreaming_Sender.py
           coverage html
           coverage report
+
       - name: Upload coverage
         uses: actions/upload-artifact@v2
         with:
