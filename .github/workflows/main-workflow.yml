@@ -33,9 +33,9 @@ jobs:
         run: |
            python bms_data_streaming_sender.py
       - name: build receiver
-        run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage TestReceiver.cpp Receiver.c -o Receiver
+        run: g++ -Wall -Wextra -fprofile-arcs TestReceiver.cpp -o receiver
       - name: run receiver
-        run: ./Receiver
+        run: ./receiver
       - name: Run and collect coverage
         run: |
           coverage run --branch test_bms_datastreaming_Sender.py
