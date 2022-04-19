@@ -82,18 +82,18 @@ void printSMAValues(::std::vector< float> smaValuesList)
     }
 }
 
-int main() 
-{
-    // Write C++ code here
-    fillSensorValuesMap(m_sensorValues);
-    printSenorValues();
-    processSMA();
-    T_SMAValues::iterator smaValuesIt = m_smaValues.begin();
-    for(;smaValuesIt != m_smaValues.end(); ++smaValuesIt)
-    {
-        ::cout<<smaValuesIt->first<<endl;
-        printSMAValues(smaValuesIt->second);
-        ::cout<<endl;
-    }
-    return 0;
-}
+// int main() 
+// {
+//     // Write C++ code here
+//     fillSensorValuesMap(m_sensorValues);
+//     printSenorValues();
+//     processSMA();
+//     T_SMAValues::iterator smaValuesIt = m_smaValues.begin();
+//     for(;smaValuesIt != m_smaValues.end(); ++smaValuesIt)
+//     {
+//         ::cout<<smaValuesIt->first<<endl;
+//         printSMAValues(smaValuesIt->second);
+//         ::cout<<endl;
+//     }
+//     return 0;
+// }
