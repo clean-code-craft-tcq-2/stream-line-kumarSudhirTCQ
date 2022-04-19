@@ -4,10 +4,8 @@
 #include <string>
 #include <vector>
 #include <random>
-#include "matplotlibcpp.h"
 
 using namespace std;
-namespace plt = matplotlibcpp;
 
 typedef ::std::map<::string, ::vector<int>> T_SensorValues;
 typedef ::std::map<::string,::std::vector< float>> T_SMAValues;
