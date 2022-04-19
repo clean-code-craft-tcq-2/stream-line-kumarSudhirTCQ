@@ -33,10 +33,13 @@ jobs:
            python bms_data_streaming_sender.py
 
       - name: build receiver
-        run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker *.c*
+        run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage TestReceiver.cpp -o receiver
 
       - name: run
-        run: ./testchecker
+        run: ./receiver
+
+      - name: run pipeline
+        run:  python bms_data_streaming_sender.py | ./receiver
 
       - name: Run and collect coverage
         run: |
