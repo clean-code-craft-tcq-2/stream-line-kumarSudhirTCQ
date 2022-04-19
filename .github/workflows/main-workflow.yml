@@ -39,7 +39,7 @@ jobs:
         run: ./receiver
 
       - name: run pipeline
-        run:  python bms_data_streaming_sender.py | ./receiver
+        run:  python test_bms_datastreaming_Sender.py | ./receiver
 
       - name: Run and collect coverage
         run: |
