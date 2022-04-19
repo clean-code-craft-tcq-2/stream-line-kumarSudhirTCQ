@@ -2,7 +2,7 @@
 #include "test/catch.hpp"
 
 #define private public
-#include "Receiver.cpp"
+#include "Receiver.h"
 
 using namespace std;
 
