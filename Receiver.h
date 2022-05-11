@@ -14,7 +14,7 @@ T_SMAValues m_smaValues;
 
 void readTheDataFromConsole()
 {
-  char dataAmps[5],dataTemp[6],separator[2];
+  char dataAmps[6],dataTemp[6],separator[1];
   int amps,temps;
   for(int i =0;i<50;++i)
   {
