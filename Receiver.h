@@ -15,7 +15,7 @@ T_SMAValues m_smaValues;
 void readTheDataFromConsole()
 {
   ::cout<<"Received Data"<<endl;
-  char dataAmps[6],dataTemp[7],separator[1];
+  char dataAmps[5],dataTemp[7],separator[1];
   int amps,temps;
   for(int i =0;i<50;++i)
   {
