@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <array>
 #include <random>
 
 using namespace std;
@@ -15,20 +16,23 @@ T_SMAValues m_smaValues;
 void readTheDataFromConsole()
 {
   ::cout<<"Received Data"<<endl;
-  int amps[50];
-  int temps[50];
+  ::vector<int> ampValues;
+  ::vector<int> tempValues;
   for(int i =0;i<50;++i)
   {
-     scanf("%*s%d %*s %*s%d",&amps[i],&temps[i]);
-      ::cout<<"Amps:"<<" "<<amps[i]<<" "<<","<<" "<<"Temp:"<<" "<<temps[i]<<endl;
+    int amps, temp;
+     scanf("%*s%d %*s %*s%d",&amps,&temp);
+      ::cout<<"Amps:"<<" "<<amps<<" "<<","<<" "<<"Temp:"<<" "<<temp<<endl;
+    ampValues.push_back(amps);
+    tempValues.push_back(temp);
   }
-  for(int j= 0; j<amps.size();j++)
+  for(int j= 0; j<ampValues.size();j++)
   {
-::cout<<amps[j]<<endl;
+::cout<<ampValues[j]<<endl;
   }
-    for(int k= 0; k<temps.size();k++)
+    for(int k= 0; k<tempValues.size();k++)
   {
-::cout<<temps[k]<<endl;
+::cout<<tempValues[k]<<endl;
   }
 
 
