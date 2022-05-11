@@ -30,7 +30,7 @@ TEST_CASE("check_for_calculate_SMA_value_for_given_Sensor_Readings")
 
 TEST_CASE("check_for_find_Max_Min_values_For_given_Readings")
 {
-  MaxAndMinValues minMaxValue;
+  MaxAndMinValues actualMinMaxValue;
   ::std::vector<int> sensorReadings = {1,8,5,6,8,5,2,8,7,4,16,58,74,23,6,8,52,2,1,5,2,65,8};
   int expectedMaxValue = 74;
   int expectedMinValue = 1;
@@ -43,8 +43,8 @@ TEST_CASE("check_for_read_data_from_console_And_store_the_Data")
 {
   T_SensorValues sensorValuesMap;
   readAndStoreTheDataFromConsole(sensorValuesMap);
-  REUIRE(sensorValuesMap.size() == 2)
-  for(unisigned int i = 0; i < sensorValuesMap.size(); ++i)
+  REQUIRE(sensorValuesMap.size() == 2)
+  for(unsigned int i = 0; i < sensorValuesMap.size(); ++i)
   {
     ::std::vector<int> sensorReadings = sensorValuesMap[i];
     REQUIRE(sensorReadings.size() == 50)
