@@ -6,5 +6,8 @@
 
 using namespace std;
 
-
+TEST_CASE("Check_for_Read_data_from_console")
+{
+  readTheDataFromConsole();
+}
 
