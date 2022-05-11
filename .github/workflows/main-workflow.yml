@@ -28,10 +28,6 @@ jobs:
           # exit-zero treats all errors as warnings.
           flake8 . --count --exit-zero --max-line-length=80 --ignore=E111,E121,E126 --statistics
 
-      - name: run Sender
-        run: |
-           python bms_data_streaming_sender.py
-
       - name: build receiver
         run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage TestReceiver.cpp -o receiver
 
