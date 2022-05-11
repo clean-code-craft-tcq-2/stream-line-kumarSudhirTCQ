@@ -6,9 +6,29 @@
 
 using namespace std;
 
+typedef ::std::map< int , Sensors> T_SensorNameMap;
+T_SensorNameMap m_sensorNameMap;
+void prepareSensorMap()
+{
+ m_sensorNameMap[0] = UNKNOWN;
+ m_sensorNameMap[1] = CURRENT;
+ m_sensorNameMap[2] = TEMPERATURE;
+}
+
+Sensors getSensorName(int value)
+{
+ Sensors sensor = UNKNOWN;
+ T_SensorNameMap::const_iterator sensorNameMapIt = m_sensorNameMap.find(value);
+ if(sensorNameMapIt != m_sensorNameMap.end())
+ {
+  sensor = sensorNameMapIt->second;
+  break;
+ }
+ return sensor;
+}
+
 TEST_CASE("check_for_Receive_And_Compute_Sensor_data")
 {
- T_SensorValuesMap sensorValuesMap;
  T_SensorDataMap sensorDataMap = receiveAndComputeTheSensorData(&readAndStoreTheDataFromConsole,
                                                                 &calculateSMAforLastFewValues, 
                                                                 &findMaxAndMinValuesForGivenSensor, 
@@ -16,8 +36,12 @@ TEST_CASE("check_for_Receive_And_Compute_Sensor_data")
   REQUIRE(sensorDataMap.size() == 2);
   for(int i = 0; i < sensorDataMap.size(); ++i)
   {
-    SensorData sensorData = sensorDataMap[i];
-    REQUIRE(sensorData.smaValue != 0.0);
+   Sensors sensor = getSensorName(i);
+    SensorData sensorData = sensorDataMap[sensor];
+   if(i != 0)
+   {
+       REQUIRE(sensorData.smaValue != 0.0);
+   }
   }
 }
 
@@ -43,11 +67,15 @@ TEST_CASE("check_for_find_Max_Min_values_For_given_Readings")
 TEST_CASE("check_for_read_data_from_console_And_store_the_Data")
 {
   T_SensorValuesMap sensorValuesMap;
-  readAndStoreTheDataFromConsole(sensorValuesMap);
+ sensorValuesMap = readAndStoreTheDataFromConsole();
   REQUIRE(sensorValuesMap.size() == 2);
   for(int i = 0; i < sensorValuesMap.size(); ++i)
   {
-    ::std::vector<int> sensorReadings = sensorValuesMap[i];
-    REQUIRE(sensorReadings.size() == 50)
+   Sensors sensor = getSensorName(i);
+    ::std::vector<int> sensorReadings = sensorValuesMap[sensor];
+   if(i!=0)
+   {
+        REQUIRE(sensorReadings.size() == 50)
+   }
   }
 }
