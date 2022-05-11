@@ -74,7 +74,7 @@ TEST_CASE("check_for_read_data_from_console_And_store_the_Data")
     ::std::vector<int> sensorReadings = sensorValuesMap[sensor];
    if(i!=0)
    {
-        REQUIRE(sensorReadings.size() == 50)
+        REQUIRE(sensorReadings.size() == 50);
    }
   }
 }
