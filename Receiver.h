@@ -22,9 +22,3 @@ void readTheDataFromConsole()
   }
 
 }
-
-int main()
-{
-  readTheDataFromConsole();
-  return 0;
-}
