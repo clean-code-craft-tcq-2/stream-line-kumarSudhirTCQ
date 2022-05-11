@@ -22,7 +22,6 @@ Sensors getSensorName(int value)
  if(sensorNameMapIt != m_sensorNameMap.end())
  {
   sensor = sensorNameMapIt->second;
-  break;
  }
  return sensor;
 }
@@ -34,7 +33,7 @@ TEST_CASE("check_for_Receive_And_Compute_Sensor_data")
                                                                 &findMaxAndMinValuesForGivenSensor, 
                                                                 &printDataForGivenSensor);
   REQUIRE(sensorDataMap.size() == 2);
-  for(int i = 0; i < sensorDataMap.size(); ++i)
+  for(unsigned int i = 0; i < sensorDataMap.size(); ++i)
   {
    Sensors sensor = getSensorName(i);
     SensorData sensorData = sensorDataMap[sensor];
@@ -69,7 +68,7 @@ TEST_CASE("check_for_read_data_from_console_And_store_the_Data")
   T_SensorValuesMap sensorValuesMap;
  sensorValuesMap = readAndStoreTheDataFromConsole();
   REQUIRE(sensorValuesMap.size() == 2);
-  for(int i = 0; i < sensorValuesMap.size(); ++i)
+  for(unsigned i = 0; i < sensorValuesMap.size(); ++i)
   {
    Sensors sensor = getSensorName(i);
     ::std::vector<int> sensorReadings = sensorValuesMap[sensor];
