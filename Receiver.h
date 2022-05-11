@@ -15,8 +15,8 @@ T_SMAValues m_smaValues;
 void readTheDataFromConsole()
 {
   ::cout<<"Received Data"<<endl;
-  int amps[];
-  int temps[];
+  int amps[50];
+  int temps[50];
   for(int i =0;i<50;++i)
   {
      scanf("%*s%d %*s %*s%d",&amps[i],&temps[i]);
