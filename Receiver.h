@@ -19,7 +19,7 @@ void readTheDataFromConsole()
   for(int i =0;i<50;++i)
   {
       scanf("%s%d%s%s%d", dataAmps,&amps,separator,dataTemp,&temps);
-  ::cout<<dataAmps<<" "<<amps<<" "<<separator<<" "dataTemp<<" "<<temps<<endl;
+  ::cout<<dataAmps<<" "<<amps<<" "<<separator<<" "<<dataTemp<<" "<<temps<<endl;
   }
 
 }
