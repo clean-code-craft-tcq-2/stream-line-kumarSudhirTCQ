@@ -32,7 +32,8 @@ jobs:
         run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage TestReceiver.cpp -o receiver
 
       - name: run pipeline
-        run:  python bms_data_streaming_sender.py | ./receiver
+        run:  |
+           python bms_data_streaming_sender.py | ./receiver
 
       - name: Run and collect coverage
         run: |
