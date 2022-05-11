@@ -23,6 +23,6 @@ void readTheDataFromConsole()
 //       scanf("%s %d %s %s %d", dataAmps,&amps,separator,dataTemp,&temps);
 //       ::cout<<dataAmps<<" "<<amps<<" "<<separator<<" "<<dataTemp<<" "<<temps<<endl;
 //   }
-scanf("%s%d %s %s%d",dataAmps,&amps);
+scanf("%s%d %s %s%d",dataAmps,&amps,separator,dataTemp,&temps);
   cout<<data<<endl;
 }
