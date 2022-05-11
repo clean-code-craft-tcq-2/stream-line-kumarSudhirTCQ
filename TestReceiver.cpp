@@ -62,19 +62,3 @@ TEST_CASE("check_for_find_Max_Min_values_For_given_Readings")
   REQUIRE(actualMinMaxValue.minValue == expectedMinValue);
   REQUIRE(actualMinMaxValue.maxValue == expectedMaxValue);
 }
-
-TEST_CASE("check_for_read_data_from_console_And_store_the_Data")
-{
-  T_SensorValuesMap sensorValuesMap;
- sensorValuesMap = readAndStoreTheDataFromConsole();
-  REQUIRE(sensorValuesMap.size() == 2);
-  for(unsigned i = 0; i < sensorValuesMap.size(); ++i)
-  {
-   Sensors sensor = getSensorName(i);
-    ::std::vector<int> sensorReadings = sensorValuesMap[sensor];
-   if(i!=0)
-   {
-        REQUIRE(sensorReadings.size() == 50);
-   }
-  }
-}
