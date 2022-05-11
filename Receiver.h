@@ -14,7 +14,7 @@ T_SMAValues m_smaValues;
 
 void readTheDataFromConsole()
 {
-  char dataFromConsole[100];
+  char dataFromConsole[10];
   for(int i =0;i<50;++i)
   {
       scanf("%s", dataFromConsole);
