@@ -18,11 +18,11 @@ void readTheDataFromConsole()
   char dataAmps[5],dataTemp[7],separator[1];
   int amps,temps;
   char data[5];
-//   for(int i =0;i<50;++i)
-//   {
-//       scanf("%s %d %s %s %d", dataAmps,&amps,separator,dataTemp,&temps);
-//       ::cout<<dataAmps<<" "<<amps<<" "<<separator<<" "<<dataTemp<<" "<<temps<<endl;
-//   }
-scanf("%s%d %s %s%d",dataAmps,&amps,separator,dataTemp,&temps);
-  cout<<data<<endl;
+  for(int i =0;i<50;++i)
+  {
+     scanf("%*s%d %*s %*s%d",&amps,&temps);
+      ::cout<<"Amps:"<<" "<<amps<<" "<<","<<" "<<"Temp:"<<" "<<temps<<endl;
+  }
+// scanf("%*s%d %*s %*s%d",&amps,&temps);
+//   cout<<data<<endl;
 }
