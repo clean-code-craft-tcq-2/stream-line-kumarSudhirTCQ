@@ -8,12 +8,28 @@
 
 using namespace std;
 
-typedef ::std::map<::string, ::vector<int>> T_SensorValues;
-typedef ::std::map<::string,::std::vector< float>> T_SMAValues;
-T_SensorValues m_sensorValues; 
-T_SMAValues m_smaValues;
+enum Sensors
+{
+  CURRENT,
+  TEMPERATURE
+}
 
-void readTheDataFromConsole()
+ struct MaxAndMinValues
+{
+     int maxValue;
+     int minValue;
+} ;
+
+struct SensorData
+{
+  MaxAndMinValues minMaxValues;
+  float smaValue;
+}
+
+typedef ::std::map<Sensors, ::vector<int>> T_SensorValues;
+typedef ::std::map<Sensors, SensorData> T_SensorDataMap;
+
+void readAndStoreTheDataFromConsole(T_SensorValues& sensorData)
 {
   ::cout<<"Received Data"<<endl;
   ::vector<int> ampValues;
@@ -26,14 +42,74 @@ void readTheDataFromConsole()
     ampValues.push_back(amps);
     tempValues.push_back(temp);
   }
-  for(int j= 0; j<ampValues.size();j++)
-  {
-::cout<<ampValues[j]<<endl;
-  }
-    for(int k= 0; k<tempValues.size();k++)
-  {
-::cout<<tempValues[k]<<endl;
-  }
-
-
+ sensorData[CURRENT] = ampValues;
+ sensorData[TEMPERATURE] = tempValues;
 }
+
+MaxAndMinValues findMaxAndMinValuesForGivenSensor(const ::std::vector<int> sensorValues)
+{
+  MaxAndMinValues maxMinValues;
+    maxMinValues.maxValue =  *max_element(sensorValues.begin(), sensorValues.end());
+    maxMinValues.minValue =  *min_element(sensorValues.begin(), sensorValues.end());
+  return maxMinValues;
+}
+
+ float calculateSMAforLastFewValues(const ::std::vector<int> sensorValues)
+{
+  float sum = 0.0, smaValue = 0.0;
+  ::std::vector< float> smaValueList;
+  const ::std::vector<int>::const_iterator sensorValuesIt = sensorValues.begin();
+  for(unsigned int  i = (sensorValues.size() - 5); i <= sensorValues.size(); ++i)
+  {
+    sum = sum + sensorValues[i] ;
+  }
+  smaValue = sum/sensorValues.size();
+   ::cout<<"smaValue - "<<smaValue<<" for "<<sensorValues.size()<<" values for the sensor"<< endl;
+  return smaValue;
+}
+
+void printDataForGivenSensor(Sensors sensorName, MaxAndMinValues minMaxValue, float smaValue)
+{
+  ::cout<<sensorName<<" - "<<"maxValue : "<<minMaxValue.maxValue<<" "<<"minValue : "<<minMaxValue.minValue<<" "<<"SMA Value : "<<endl;
+}
+
+SensorData updateSensorData(MaxAndMinValues minMaxValues, float smaValue)
+{
+    SensorData sensorData;
+    sensorData.minMaxValues = minMaxvalue;
+    sensorData.smaValue = smaValue;
+    return sensorData;
+}
+
+T_SensorDataMap receiveAndComputeTheSensorData(void(*readfnPtr)(T_SensorValues),
+                                    float(*calcSMA_fnPtr)(::std::vector<int>),
+                                    MaxAndMinValues(*calc_minMaxValuePtr)(::std::vector<int>),
+                                    void(*print_fnPtr)(Sensors, MaxAndMinValues, float))
+{
+  T_SensorDataMap sensorDataMap;
+  float smaValue = 0.0;
+  MaxAndMinValues minMaxvalue;
+  T_SensorValues sensorData;
+  fnPtr(sensorData);
+  T_SensorValues::Const_iterator sensorDataIt = sensorData.begin();
+  for(;sensorDataIt != sensorData.end(); ++sensorDataIt)
+  {
+    smaValue = calcSMA_fnPtr(sensorDataIt->second);
+    minMaxvalue = calc_minMaxValuePtr(sensorDataIt->second)
+    print_fnPtr( sensorDataIt->first, minMaxvalue, smaValue ));
+    sensorDataMap[sensorDataIt->first] = updateSensorData( minMaxvalue, smaValue);
+  }
+  return sensorDataMap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
