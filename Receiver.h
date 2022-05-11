@@ -14,7 +14,17 @@ T_SMAValues m_smaValues;
 
 void readTheDataFromConsole()
 {
-  ::std::string dataFromConsole;
-  scanf("%s", dataFromConsole);
+  char dataFromConsole[100];
+  for(int i =0;i<50;++i)
+  {
+      scanf("%s", dataFromConsole);
   ::cout<<dataFromConsole<<endl;
+  }
+
+}
+
+int main()
+{
+  readTheDataFromConsole();
+  return 0;
 }
