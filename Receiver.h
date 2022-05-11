@@ -14,11 +14,12 @@ T_SMAValues m_smaValues;
 
 void readTheDataFromConsole()
 {
-  char dataFromConsole[10];
+  char dataAmps[5],dataTemp[6];
+  int amps,temps;
   for(int i =0;i<50;++i)
   {
-      scanf("%s", dataFromConsole);
-  ::cout<<dataFromConsole<<endl;
+      scanf("%s%d%s%s%d", dataAmps,&amps,dataTemp,&temps);
+  ::cout<<dataAmps<<" "<<amps<<" "<<dataTemp<<" "<<temps<<endl;
   }
 
 }
