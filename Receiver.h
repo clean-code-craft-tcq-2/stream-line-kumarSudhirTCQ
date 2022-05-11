@@ -10,6 +10,7 @@ using namespace std;
 
 typedef enum
 {
+  UNKNOWN = 0,
   CURRENT,
   TEMPERATURE
 }Sensors;
@@ -28,13 +29,14 @@ struct SensorData
 
 typedef ::std::map<Sensors, ::vector<int>> T_SensorValuesMap;
 typedef ::std::map<Sensors, SensorData> T_SensorDataMap;
-typedef void(*readfnPtr)(T_SensorValuesMap);
+typedef T_SensorValuesMap(*readfnPtr)();
 typedef float(*calcSMA_fnPtr)(::std::vector<int>);
 typedef MaxAndMinValues(*calc_minMaxValuePtr)(::std::vector<int>);
 typedef void(*print_fnPtr)(Sensors, MaxAndMinValues, float);
 
-void readAndStoreTheDataFromConsole(T_SensorValuesMap& sensorValuesMap)
+T_SensorValuesMap readAndStoreTheDataFromConsole()
 {
+  T_SensorValuesMap sensorValuesMap;
   ::cout<<"Received Data"<<endl;
   ::vector<int> ampValues;
   ::vector<int> tempValues;
@@ -48,6 +50,7 @@ void readAndStoreTheDataFromConsole(T_SensorValuesMap& sensorValuesMap)
   }
  sensorValuesMap[CURRENT] = ampValues;
  sensorValuesMap[TEMPERATURE] = tempValues;
+  return sensorValuesMap;
 }
 
 MaxAndMinValues findMaxAndMinValuesForGivenSensor(const ::std::vector<int> sensorValues)
@@ -84,7 +87,7 @@ SensorData updateSensorData(MaxAndMinValues minMaxValues, float smaValue)
     return sensorData;
 }
 
-T_SensorDataMap receiveAndComputeTheSensorData(void(*readfnPtr)(T_SensorValuesMap),
+T_SensorDataMap receiveAndComputeTheSensorData(T_SensorValuesMap(*readfnPtr)(),
                                     float(*calcSMA_fnPtr)(::std::vector<int>),
                                     MaxAndMinValues(*calc_minMaxValuePtr)(::std::vector<int>),
                                     void(*print_fnPtr)(Sensors, MaxAndMinValues, float))
@@ -93,7 +96,7 @@ T_SensorDataMap receiveAndComputeTheSensorData(void(*readfnPtr)(T_SensorValuesMa
   float smaValue = 0.0;
   MaxAndMinValues minMaxvalue;
   T_SensorValuesMap sensorValuesMap;
-  readfnPtr(sensorValuesMap);
+  sensorValuesMap = readfnPtr();
   T_SensorValuesMap::const_iterator sensorValuesMapIt = sensorValuesMap.begin();
   for(;sensorValuesMapIt != sensorValuesMap.end(); ++sensorValuesMapIt)
   {
