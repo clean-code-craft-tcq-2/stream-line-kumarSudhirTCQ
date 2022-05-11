@@ -69,7 +69,7 @@ MaxAndMinValues findMaxAndMinValuesForGivenSensor(const ::std::vector<int> senso
   {
     sum = sum + sensorValues[i] ;
   }
-  smaValue = sum/sensorValues.size();
+  smaValue = sum/5;
    ::cout<<"smaValue - "<<smaValue<<" for "<<sensorValues.size()<<" values for the sensor"<< endl;
   return smaValue;
 }
