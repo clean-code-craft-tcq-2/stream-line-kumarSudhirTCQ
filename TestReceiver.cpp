@@ -8,12 +8,13 @@ using namespace std;
 
 TEST_CASE("check_for_Receive_And_Compute_Sensor_data")
 {
+ T_SensorValuesMap sensorValuesMap;
  T_SensorDataMap sensorDataMap = receiveAndComputeTheSensorData(&readAndStoreTheDataFromConsole,
                                                                 &calculateSMAforLastFewValues, 
                                                                 &findMaxAndMinValuesForGivenSensor, 
                                                                 &printDataForGivenSensor);
   REQUIRE(sensorDataMap.size() == 2);
-  for(unsigned int i = 0; i < sensorDataMap.size(); ++i)
+  for(int i = 0; i < sensorDataMap.size(); ++i)
   {
     SensorData sensorData = sensorDataMap[i];
     REQUIRE(sensorData.smaValue != 0.0);
@@ -44,7 +45,7 @@ TEST_CASE("check_for_read_data_from_console_And_store_the_Data")
   T_SensorValuesMap sensorValuesMap;
   readAndStoreTheDataFromConsole(sensorValuesMap);
   REQUIRE(sensorValuesMap.size() == 2);
-  for(unsigned int i = 0; i < sensorValuesMap.size(); ++i)
+  for(int i = 0; i < sensorValuesMap.size(); ++i)
   {
     ::std::vector<int> sensorReadings = sensorValuesMap[i];
     REQUIRE(sensorReadings.size() == 50)
