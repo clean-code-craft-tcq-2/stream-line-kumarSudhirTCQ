@@ -17,12 +17,12 @@ void readTheDataFromConsole()
   ::cout<<"Received Data"<<endl;
   char dataAmps[5],dataTemp[7],separator[1];
   int amps,temps;
-  char data[500];
+  char data[5];
 //   for(int i =0;i<50;++i)
 //   {
 //       scanf("%s %d %s %s %d", dataAmps,&amps,separator,dataTemp,&temps);
 //       ::cout<<dataAmps<<" "<<amps<<" "<<separator<<" "<<dataTemp<<" "<<temps<<endl;
 //   }
-scanf("%s",data);
+scanf("%s%d %s %s%d",dataAmps,&amps);
   cout<<data<<endl;
 }
