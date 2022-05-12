@@ -28,6 +28,7 @@ Sensors getSensorName(int value)
 
 TEST_CASE("check_for_Receive_And_Compute_Sensor_data")
 {
+ prepareSensorMap();
  T_SensorDataMap sensorDataMap = receiveAndComputeTheSensorData(&readAndStoreTheDataFromConsole,
                                                                 &calculateSMAforLastFewValues, 
                                                                 &findMaxAndMinValuesForGivenSensor, 
@@ -35,7 +36,8 @@ TEST_CASE("check_for_Receive_And_Compute_Sensor_data")
   REQUIRE(sensorDataMap.size() == 2);
   for(unsigned int i = 0; i < sensorDataMap.size(); ++i)
   {
-   Sensors sensor = getSensorName(i);
+    cout<<"i - "<<i<<endl;
+    Sensors sensor = getSensorName(i);
     SensorData sensorData = sensorDataMap[sensor];
    cout<<"sensor - "<<sensor<<" sensorData.smaValue - "<<sensorData.smaValue<<endl;
    if(i != 0)
