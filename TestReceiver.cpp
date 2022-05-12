@@ -37,6 +37,7 @@ TEST_CASE("check_for_Receive_And_Compute_Sensor_data")
   {
    Sensors sensor = getSensorName(i);
     SensorData sensorData = sensorDataMap[sensor];
+   cout<<"sensor - "<<sensor<<" sensorData.smaValue - "<<sensorData.smaValue<<endl;
    if(i != 0)
    {
        REQUIRE(sensorData.smaValue != 0.0);
