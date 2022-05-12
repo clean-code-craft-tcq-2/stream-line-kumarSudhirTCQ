@@ -75,3 +75,20 @@ This section lists the minimum functionality of the Sender and Receiver.
 ## Quality Parameters
 
 Setup the quality parameters of your project (duplication, complexity, coverage, warnings) using GitHub workflow yml files.
+
+![alt text](https://www.planttext.com/api/plantuml/png/TP1D3e8m44RtFGKNy08k30Q36zc8SJzfXzYaJ9jXG8zliGHJ3Rj9-xqtF-KWm3BsJgaG2wjj0992EuiasTCLDTe9ESzv6hn3fH9Gx0vhhjWNdCeZcShtOHIyFR35IF0911HeiHC8VjKh--i14oMjU9uLCropxwkb-GQbmUdHHN_R73lF5nYankSTt8Z35jDPCWsyOhF6KehMdi_nbzBW6RXi7xd0bkGpLvus-BzaYMJYmTy0)
+
+Code Flow:
+- Read the sensor data for each sensor from the console and stoe in the T_SensorValuesMap
+- Calculate the SMA value for the last 5 readings in the sensor readings list
+- Find the max and min values from the sensor readings list
+- Update these details in T_SensorDataMap for each sensor
+- Print these details on the console
+
+Test Specifications
+- Operation Action : Receiver reads data from the console
+     Required action : 50 readings should be read and stored in the T_SensorValuesMap
+- Operation Action : Calculate SMA for each sensor
+     Required action : expected sma should be same as actual sma value
+- Operation Action : find min max values for each sensor from the list
+     Required action : expected min max values should be same as actual min max value
