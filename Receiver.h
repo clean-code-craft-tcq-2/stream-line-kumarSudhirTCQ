@@ -103,8 +103,10 @@ T_SensorDataMap receiveAndComputeTheSensorData(T_SensorValuesMap(*readfnPtr)(),
     smaValue = calcSMA_fnPtr(sensorValuesMapIt->second);
     minMaxvalue = calc_minMaxValuePtr(sensorValuesMapIt->second);
     print_fnPtr( sensorValuesMapIt->first, minMaxvalue, smaValue );
+    cout<<sensorValuesMapIt->first<<" "<<"smaValue - "<<smaValue<<endl;
     sensorDataMap[sensorValuesMapIt->first] = updateSensorData( minMaxvalue, smaValue);
   }
+  cout<<"sensorDataMap size - "<<sensorDataMap.size()<<endl;
   return sensorDataMap;
 }
 
